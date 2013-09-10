@@ -11,23 +11,36 @@
 		FDB1E6F417D8BB7400186417 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB1E6F317D8BB7400186417 /* Foundation.framework */; };
 		FDB1E6F617D8BB7400186417 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB1E6F517D8BB7400186417 /* CoreGraphics.framework */; };
 		FDB1E6F817D8BB7400186417 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB1E6F717D8BB7400186417 /* CoreData.framework */; };
-		FDB1E6FE17D8BB7400186417 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDB1E6FC17D8BB7400186417 /* InfoPlist.strings */; };
 		FDB1E70017D8BB7400186417 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E6FF17D8BB7400186417 /* main.m */; };
 		FDB1E70417D8BB7400186417 /* WAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E70317D8BB7400186417 /* WAAppDelegate.m */; };
 		FDB1E70617D8BB7400186417 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FDB1E70517D8BB7400186417 /* Default.png */; };
 		FDB1E70817D8BB7400186417 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDB1E70717D8BB7400186417 /* Default@2x.png */; };
 		FDB1E70A17D8BB7400186417 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FDB1E70917D8BB7400186417 /* Default-568h@2x.png */; };
 		FDB1E70D17D8BB7400186417 /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E70B17D8BB7400186417 /* Weather.xcdatamodeld */; };
+		FDB1E71517D8C04200186417 /* WADataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E71417D8C04200186417 /* WADataManager.m */; };
+		FDB1E72B17D8D35800186417 /* WAParserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E72A17D8D35800186417 /* WAParserInfo.m */; };
+		FDB1E73317D8DC4E00186417 /* WAConnectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E73217D8DC4D00186417 /* WAConnectionService.m */; };
+		FDB1E73717D8E0A400186417 /* WACityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E73617D8E0A400186417 /* WACityViewController.m */; };
+		FDB1E73917D8E0B800186417 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB1E73817D8E0B800186417 /* Main.storyboard */; };
+		FDB1E73D17D8E4DF00186417 /* NSManagedObject+Naming.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E73C17D8E4DF00186417 /* NSManagedObject+Naming.m */; };
+		FDB1E74117D8E8B900186417 /* WACityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E74017D8E8B900186417 /* WACityCell.m */; };
+		FDB1E74417D8EA8B00186417 /* WAParseCityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E74317D8EA8B00186417 /* WAParseCityInfo.m */; };
+		FDB1E74717D8EA9700186417 /* WAParseWeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E74617D8EA9700186417 /* WAParseWeatherInfo.m */; };
+		FDC0285517DE177E00392340 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDC0285417DE177E00392340 /* InfoPlist.strings */; };
+		FDC0285817DE193400392340 /* WeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC0285717DE193400392340 /* WeatherInfo.m */; };
+		FDC0285B17DE193C00392340 /* CityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC0285A17DE193C00392340 /* CityInfo.m */; };
+		FDC0286117DE2A6E00392340 /* WASearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC0286017DE2A6E00392340 /* WASearchViewController.m */; };
+		FDC0286417DE368E00392340 /* WAParserSearchCity.m in Sources */ = {isa = PBXBuildFile; fileRef = FDC0286317DE368E00392340 /* WAParserSearchCity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD05C2B017DE0D580010D9B4 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		FDB1E6EE17D8BB7400186417 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB1E6F117D8BB7400186417 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FDB1E6F317D8BB7400186417 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FDB1E6F517D8BB7400186417 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FDB1E6F717D8BB7400186417 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FDB1E6FB17D8BB7400186417 /* Weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Weather-Info.plist"; sourceTree = "<group>"; };
-		FDB1E6FD17D8BB7400186417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FDB1E6FF17D8BB7400186417 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FDB1E70117D8BB7400186417 /* Weather-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Weather-Prefix.pch"; sourceTree = "<group>"; };
 		FDB1E70217D8BB7400186417 /* WAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WAAppDelegate.h; sourceTree = "<group>"; };
@@ -35,7 +48,35 @@
 		FDB1E70517D8BB7400186417 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FDB1E70717D8BB7400186417 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FDB1E70917D8BB7400186417 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		FDB1E70C17D8BB7400186417 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
+		FDB1E70C17D8BB7400186417 /* Weather1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather1.xcdatamodel; sourceTree = "<group>"; };
+		FDB1E71317D8C04200186417 /* WADataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADataManager.h; sourceTree = "<group>"; };
+		FDB1E71417D8C04200186417 /* WADataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADataManager.m; sourceTree = "<group>"; };
+		FDB1E72917D8D35800186417 /* WAParserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAParserInfo.h; sourceTree = "<group>"; };
+		FDB1E72A17D8D35800186417 /* WAParserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAParserInfo.m; sourceTree = "<group>"; };
+		FDB1E72C17D8D46B00186417 /* WAParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WAParserDelegate.h; sourceTree = "<group>"; };
+		FDB1E73017D8D98600186417 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		FDB1E73117D8DC4D00186417 /* WAConnectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAConnectionService.h; sourceTree = "<group>"; };
+		FDB1E73217D8DC4D00186417 /* WAConnectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAConnectionService.m; sourceTree = "<group>"; };
+		FDB1E73517D8E0A400186417 /* WACityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACityViewController.h; sourceTree = "<group>"; };
+		FDB1E73617D8E0A400186417 /* WACityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACityViewController.m; sourceTree = "<group>"; };
+		FDB1E73817D8E0B800186417 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FDB1E73B17D8E4DE00186417 /* NSManagedObject+Naming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Naming.h"; sourceTree = "<group>"; };
+		FDB1E73C17D8E4DF00186417 /* NSManagedObject+Naming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Naming.m"; sourceTree = "<group>"; };
+		FDB1E73F17D8E8B900186417 /* WACityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACityCell.h; sourceTree = "<group>"; };
+		FDB1E74017D8E8B900186417 /* WACityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACityCell.m; sourceTree = "<group>"; };
+		FDB1E74217D8EA8B00186417 /* WAParseCityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAParseCityInfo.h; sourceTree = "<group>"; };
+		FDB1E74317D8EA8B00186417 /* WAParseCityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAParseCityInfo.m; sourceTree = "<group>"; };
+		FDB1E74517D8EA9700186417 /* WAParseWeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAParseWeatherInfo.h; sourceTree = "<group>"; };
+		FDB1E74617D8EA9700186417 /* WAParseWeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAParseWeatherInfo.m; sourceTree = "<group>"; };
+		FDC0285417DE177E00392340 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FDC0285617DE193400392340 /* WeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherInfo.h; sourceTree = "<group>"; };
+		FDC0285717DE193400392340 /* WeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherInfo.m; sourceTree = "<group>"; };
+		FDC0285917DE193C00392340 /* CityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CityInfo.h; path = ../CityInfo.h; sourceTree = "<group>"; };
+		FDC0285A17DE193C00392340 /* CityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CityInfo.m; path = ../CityInfo.m; sourceTree = "<group>"; };
+		FDC0285F17DE2A6E00392340 /* WASearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASearchViewController.h; sourceTree = "<group>"; };
+		FDC0286017DE2A6E00392340 /* WASearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASearchViewController.m; sourceTree = "<group>"; };
+		FDC0286217DE368E00392340 /* WAParserSearchCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAParserSearchCity.h; sourceTree = "<group>"; };
+		FDC0286317DE368E00392340 /* WAParserSearchCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAParserSearchCity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +127,11 @@
 			children = (
 				FDB1E70217D8BB7400186417 /* WAAppDelegate.h */,
 				FDB1E70317D8BB7400186417 /* WAAppDelegate.m */,
-				FDB1E70B17D8BB7400186417 /* Weather.xcdatamodeld */,
+				FDB1E73E17D8E89F00186417 /* Views */,
+				FDB1E73417D8E08100186417 /* Controllers */,
+				FDB1E71617D8C59300186417 /* Model */,
 				FDB1E6FA17D8BB7400186417 /* Supporting Files */,
+				FDB1E73817D8E0B800186417 /* Main.storyboard */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -96,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				FDB1E6FB17D8BB7400186417 /* Weather-Info.plist */,
-				FDB1E6FC17D8BB7400186417 /* InfoPlist.strings */,
+				FDC0285417DE177E00392340 /* InfoPlist.strings */,
 				FDB1E6FF17D8BB7400186417 /* main.m */,
 				FDB1E70117D8BB7400186417 /* Weather-Prefix.pch */,
 				FDB1E70517D8BB7400186417 /* Default.png */,
@@ -104,6 +148,54 @@
 				FDB1E70917D8BB7400186417 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDB1E71617D8C59300186417 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FDC0285617DE193400392340 /* WeatherInfo.h */,
+				FDC0285717DE193400392340 /* WeatherInfo.m */,
+				FDC0285917DE193C00392340 /* CityInfo.h */,
+				FDC0285A17DE193C00392340 /* CityInfo.m */,
+				FDB1E70B17D8BB7400186417 /* Weather.xcdatamodeld */,
+				FDB1E71317D8C04200186417 /* WADataManager.h */,
+				FDB1E71417D8C04200186417 /* WADataManager.m */,
+				FDB1E73117D8DC4D00186417 /* WAConnectionService.h */,
+				FDB1E73217D8DC4D00186417 /* WAConnectionService.m */,
+				FDC0286217DE368E00392340 /* WAParserSearchCity.h */,
+				FDC0286317DE368E00392340 /* WAParserSearchCity.m */,
+				FDB1E74217D8EA8B00186417 /* WAParseCityInfo.h */,
+				FDB1E74317D8EA8B00186417 /* WAParseCityInfo.m */,
+				FDB1E74517D8EA9700186417 /* WAParseWeatherInfo.h */,
+				FDB1E74617D8EA9700186417 /* WAParseWeatherInfo.m */,
+				FDB1E72917D8D35800186417 /* WAParserInfo.h */,
+				FDB1E72A17D8D35800186417 /* WAParserInfo.m */,
+				FDB1E72C17D8D46B00186417 /* WAParserDelegate.h */,
+				FDB1E73017D8D98600186417 /* Model.h */,
+				FDB1E73B17D8E4DE00186417 /* NSManagedObject+Naming.h */,
+				FDB1E73C17D8E4DF00186417 /* NSManagedObject+Naming.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FDB1E73417D8E08100186417 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FDB1E73517D8E0A400186417 /* WACityViewController.h */,
+				FDB1E73617D8E0A400186417 /* WACityViewController.m */,
+				FDC0285F17DE2A6E00392340 /* WASearchViewController.h */,
+				FDC0286017DE2A6E00392340 /* WASearchViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FDB1E73E17D8E89F00186417 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDB1E73F17D8E8B900186417 /* WACityCell.h */,
+				FDB1E74017D8E8B900186417 /* WACityCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,10 +250,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDB1E6FE17D8BB7400186417 /* InfoPlist.strings in Resources */,
 				FDB1E70617D8BB7400186417 /* Default.png in Resources */,
 				FDB1E70817D8BB7400186417 /* Default@2x.png in Resources */,
 				FDB1E70A17D8BB7400186417 /* Default-568h@2x.png in Resources */,
+				FDB1E73917D8E0B800186417 /* Main.storyboard in Resources */,
+				FDC0285517DE177E00392340 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,21 +268,22 @@
 				FDB1E70017D8BB7400186417 /* main.m in Sources */,
 				FDB1E70417D8BB7400186417 /* WAAppDelegate.m in Sources */,
 				FDB1E70D17D8BB7400186417 /* Weather.xcdatamodeld in Sources */,
+				FDB1E71517D8C04200186417 /* WADataManager.m in Sources */,
+				FDB1E72B17D8D35800186417 /* WAParserInfo.m in Sources */,
+				FDB1E73317D8DC4E00186417 /* WAConnectionService.m in Sources */,
+				FDB1E73717D8E0A400186417 /* WACityViewController.m in Sources */,
+				FDB1E73D17D8E4DF00186417 /* NSManagedObject+Naming.m in Sources */,
+				FDB1E74117D8E8B900186417 /* WACityCell.m in Sources */,
+				FDB1E74417D8EA8B00186417 /* WAParseCityInfo.m in Sources */,
+				FDB1E74717D8EA9700186417 /* WAParseWeatherInfo.m in Sources */,
+				FDC0285817DE193400392340 /* WeatherInfo.m in Sources */,
+				FDC0285B17DE193C00392340 /* CityInfo.m in Sources */,
+				FDC0286117DE2A6E00392340 /* WASearchViewController.m in Sources */,
+				FDC0286417DE368E00392340 /* WAParserSearchCity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FDB1E6FC17D8BB7400186417 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FDB1E6FD17D8BB7400186417 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FDB1E70E17D8BB7400186417 /* Debug */ = {
@@ -289,6 +383,7 @@
 				FDB1E71217D8BB7400186417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
@@ -296,9 +391,10 @@
 		FDB1E70B17D8BB7400186417 /* Weather.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FDB1E70C17D8BB7400186417 /* Weather.xcdatamodel */,
+				FD05C2B017DE0D580010D9B4 /* Weather.xcdatamodel */,
+				FDB1E70C17D8BB7400186417 /* Weather1.xcdatamodel */,
 			);
-			currentVersion = FDB1E70C17D8BB7400186417 /* Weather.xcdatamodel */;
+			currentVersion = FD05C2B017DE0D580010D9B4 /* Weather.xcdatamodel */;
 			path = Weather.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

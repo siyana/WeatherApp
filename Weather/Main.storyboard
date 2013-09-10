@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="M8e-gf-ynR">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--City View Controller-->
+        <scene sceneID="H2A-Ak-EGK">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="XfG-uf-osq" customClass="WACityViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="slK-3t-uwN">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="C2l-iA-CQe">
+                            <size key="itemSize" width="140" height="60"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="20" maxX="10" maxY="20"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityCell" id="4IO-oN-JcD" customClass="WACityCell">
+                                <rect key="frame" x="10" y="20" width="140" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="CityName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6t-Sq-vmy">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="81" id="9j4-JV-hZx"/>
+                                                <constraint firstAttribute="height" constant="21" id="Mra-yX-97N"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="t" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MG8-RC-u6W">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="29" id="qA3-Vk-il7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="D6t-Sq-vmy" firstAttribute="leading" secondItem="4IO-oN-JcD" secondAttribute="leading" constant="12" id="P78-aI-A4q"/>
+                                    <constraint firstAttribute="bottom" secondItem="MG8-RC-u6W" secondAttribute="bottom" constant="9" id="aBK-TP-ixO"/>
+                                    <constraint firstItem="D6t-Sq-vmy" firstAttribute="top" secondItem="4IO-oN-JcD" secondAttribute="top" constant="9" id="gQ7-08-weZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="MG8-RC-u6W" secondAttribute="trailing" constant="13" id="lVM-ox-Ecy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="cityDegreesLabel" destination="MG8-RC-u6W" id="h2C-c1-ocT"/>
+                                    <outlet property="cityNameLabel" destination="D6t-Sq-vmy" id="ETb-6d-R3K"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="XfG-uf-osq" id="Z0s-0f-KQT"/>
+                            <outlet property="delegate" destination="XfG-uf-osq" id="UAh-4m-rtd"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="4GC-pe-BPo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5eC-6b-f8T">
+                            <connections>
+                                <segue destination="8cg-EB-pxv" kind="push" id="yys-iI-Pmz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D5Z-n9-Tf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="-306"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="wfC-2r-f5J">
+            <objects>
+                <tableViewController id="8cg-EB-pxv" customClass="WASearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="84H-cX-DuM">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search by city" showsCancelButton="YES" id="Ioq-Rr-cZP">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>City</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="8cg-EB-pxv" id="2AV-Qo-11o"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchCell" id="Gd5-Kw-feI">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8cg-EB-pxv" id="b4d-UL-hYI"/>
+                            <outlet property="delegate" destination="8cg-EB-pxv" id="Ued-Kk-NvM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="q6A-GL-ZOf"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Ioq-Rr-cZP" id="Yt7-A6-1Ec"/>
+                        <outlet property="searchDisplayController" destination="GTC-Gy-BpA" id="2qn-CT-a1x"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdw-wi-tby" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="i3f-Q4-56F">
+                    <connections>
+                        <outlet property="delegate" destination="8cg-EB-pxv" id="kCg-4z-OcU"/>
+                        <outlet property="searchContentsController" destination="8cg-EB-pxv" id="sOa-wh-YLT"/>
+                        <outlet property="searchResultsDataSource" destination="8cg-EB-pxv" id="195-Cw-O8J"/>
+                        <outlet property="searchResultsDelegate" destination="8cg-EB-pxv" id="EZo-u8-S9q"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="LID-gp-Psr">
+                    <connections>
+                        <outlet property="delegate" destination="8cg-EB-pxv" id="kYO-WZ-6iV"/>
+                        <outlet property="searchContentsController" destination="8cg-EB-pxv" id="TI4-hW-C9h"/>
+                        <outlet property="searchResultsDataSource" destination="8cg-EB-pxv" id="SIw-ii-JRR"/>
+                        <outlet property="searchResultsDelegate" destination="8cg-EB-pxv" id="dEd-ag-iDk"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="GTC-Gy-BpA">
+                    <connections>
+                        <outlet property="delegate" destination="8cg-EB-pxv" id="wFu-i5-HI5"/>
+                        <outlet property="searchBar" destination="Ioq-Rr-cZP" id="3y7-KR-2xi"/>
+                        <outlet property="searchContentsController" destination="8cg-EB-pxv" id="VW4-Yb-wrm"/>
+                        <outlet property="searchResultsDataSource" destination="8cg-EB-pxv" id="Dvy-nB-DOO"/>
+                        <outlet property="searchResultsDelegate" destination="8cg-EB-pxv" id="Yiq-6h-BT6"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1123" y="-306"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fa5-13-ome">
+            <objects>
+                <navigationController id="M8e-gf-ynR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8yG-xF-bDA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XfG-uf-osq" kind="relationship" relationship="rootViewController" id="zf6-Yp-8CM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uLe-93-OeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="243" y="-306"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
