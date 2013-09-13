@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (RGBColors)
-
++(UIColor *)colorWithRedColor:(CGFloat)red greenColor:(CGFloat)green blueColor:(CGFloat)blue alpha:(CGFloat)alpha;
 @end

@@ -9,5 +9,5 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface WAGradientLayer : CAGradientLayer
-
+-(WAGradientLayer *) initWithDegrees: (NSNumber *) degrees;
 @end

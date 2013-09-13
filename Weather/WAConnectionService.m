@@ -39,67 +39,54 @@ withParserType:(WAParserType)parserType {
 
 - (void)start
 {
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:YES];
-    self.connection = connection;
-}
-
-#pragma mark - NSURLConnectionDelegate methods
-
--(void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    self.responseData = [NSMutableData dataWithCapacity:0];
-}
-
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.responseData appendData:data];
-}
-
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"%@", error.localizedDescription);
-    self.responseData = nil;
-    self.connection = nil;
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSError *error;
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+    NSOperationQueue *queue = [[WADataManager sharedInstance] requestQueue];
+    NSLog(@"operation count = %d", queue.operationCount);
     
-    if (error) {
-        NSLog(@"error: %@", error.localizedDescription);
-        return;
-    }
-    
-    WAParserInfo *parser;
-    if (self.parserType == WAParserTypeCity) {
-        parser = [[WAParseCityInfo alloc] initWithJSONDict:jsonDict withDelegate:self];
-    }
-    else if (self.parserType == WAParserTypeWeather) {
-        parser = [[WAParseWeatherInfo alloc] initWithJSONDict:jsonDict withDelegate:self];
-    }
-    else if (self.parserType == WAParserTypeSearch){
-        parser = [[WAParserSearchCity alloc] initWithJSONDict:jsonDict withDelegate:self];
-        //[self searchCitiesWithJSONDict: jsonDict];
-        
-    }
-    [parser start];
+    [NSURLConnection sendAsynchronousRequest:self.request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                NSLog(@"error: %@", error.localizedDescription);
+                self.completion(nil, error.localizedDescription);
+            }
+            else {
+                NSError* error = nil;
+                NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                
+                WAParserInfo *parser;
+                if (self.parserType == WAParserTypeCity) {
+                    parser = [[WAParseCityInfo alloc] initWithJSONDict:jsonDict withDelegate:self];
+                }
+                else if (self.parserType == WAParserTypeWeather) {
+                    parser = [[WAParseWeatherInfo alloc] initWithJSONDict:jsonDict withDelegate:self];
+                }
+                else if (self.parserType == WAParserTypeSearch){
+                    [self showFoundCitiesFromJSONDict:jsonDict];
+                    //parser = [[WAParserSearchCity alloc] initWithJSONDict:jsonDict withDelegate:self];
+                }
+                
+                [parser start];
+            }
+        });
+    }];
 }
 
-//-(void) searchCitiesWithJSONDict: (NSDictionary *) dict
-//{
-//    NSMutableArray *apps = [[NSMutableArray alloc] init];
-//    if(dict){
-//        
-//        [apps addObject:[dict objectForKey:@"name"]];
-//        self.completion(apps, nil);
-//    }
-//    else{
-//        self.completion(nil, @"error in searching");
-//    }
-//
-//}
+-(void) showFoundCitiesFromJSONDict: (NSDictionary *) dict
+{
+    NSMutableArray *cityNames = [[NSMutableArray alloc] init];
+    NSArray *array = [dict objectForKey:@"list"];
+    NSMutableDictionary *cityInfoDict ;
+    NSEnumerator *enumerator = [array objectEnumerator];
+    NSDictionary *value = [[NSDictionary alloc] init];
+    while ((value = (NSDictionary*)[enumerator nextObject])) {
+        cityInfoDict = [[NSMutableDictionary alloc] init];
+        [cityInfoDict setObject:[value objectForKey:@"name"] forKey:@"cityName"];
+        [cityInfoDict setObject:[value objectForKey:@"id"] forKey:@"cityID"];
+        [cityInfoDict setObject:[[value objectForKey:@"sys"] objectForKey:@"country"] forKey:@"country"];
+        [cityNames addObject:cityInfoDict];
+    }
+    
+    self.completion(cityNames,nil);
+}
 
 #pragma mark - WAParserDelegate methods
 

@@ -11,9 +11,10 @@
 #import "WAConnectionService.h"
 #import "WAParserInfo.h"
 
-#define BASE_URL @"http://api.openweathermap.org/data/2.5/weather?q="
-#define URL_7Days @"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&cnt=7&mode=json"
+#define BASE_URL @"http://api.openweathermap.org/data/2.5/weather?q=%@&units=metric&mode=json"
+#define URL_7Days @"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&units=metric&cnt=10&mode=json"
 #define URL_SEARCH @"http://api.openweathermap.org/data/2.5/find?q=%@&units=metric&mode=json"
+#define URL_SEARCH_BY_ID @"http://api.openweathermap.org/data/2.5/weather?id=%@&units=metric&mode=json"
 
 @interface WADataManager ()// <WAParserDelegate>//, NSURLConnectionDelegate>
 
@@ -25,6 +26,8 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+@synthesize requestQueue = _requestQueue;
+
 + (WADataManager *)sharedInstance {
 	static dispatch_once_t pred;
 	static WADataManager *sharedInstance = nil;
@@ -33,14 +36,34 @@
 	return sharedInstance;
 }
 
+- (NSOperationQueue *)requestQueue
+{
+    if (_requestQueue)
+        return _requestQueue;
+    
+    _requestQueue = [[NSOperationQueue alloc] init];
+    _requestQueue.maxConcurrentOperationCount = 1;
+    [_requestQueue addObserver:self forKeyPath:@"operations" options:0 context:NULL];
+    
+    return _requestQueue;
+}
+
+- (void)setRequestQueue:(NSOperationQueue *)requestQueue
+{
+    _requestQueue = requestQueue;
+}
+
+- (void)dealloc
+{
+    [self.requestQueue removeObserver:self forKeyPath:@"operations"];
+}
+
 - (void)saveContext
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
@@ -49,8 +72,6 @@
 
 #pragma mark - Core Data stack
 
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (_managedObjectContext != nil) {
@@ -65,8 +86,6 @@
     return _managedObjectContext;
 }
 
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModel
 {
     if (_managedObjectModel != nil) {
@@ -77,24 +96,22 @@
     return _managedObjectModel;
 }
 
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
     
-  //  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-//                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-//                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    //  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+    //                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+    //                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Weather.sqlite"];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -105,7 +122,6 @@
 
 #pragma mark - Application's Documents directory
 
-// Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -119,13 +135,25 @@
     
 }
 
--(void) findCityByName: (NSString *) cityName withURL:  andParser: (WAParserType) parser withCompletion:(ServiceCompletionBlock)completion
+-(void) findCityBy: (NSString *) citySearchData withURL:(WAURLs) initialURL andParser: (WAParserType) parser withCompletion:(ServiceCompletionBlock)completion
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@", BASE_URL, cityName];
+    NSString *urlString;
+    if(initialURL == WABASE_URL){
+        urlString = [NSString stringWithFormat:BASE_URL, citySearchData];
+    }else if(initialURL == WAURL_SEARCH){
+        urlString = [NSString stringWithFormat:URL_SEARCH, citySearchData];
+    }else if(initialURL == WAURL_SEARCH_BY_ID){
+        urlString = [NSString stringWithFormat:URL_SEARCH_BY_ID, citySearchData];
+    }
+    
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     NSURL *url = [NSURL URLWithString:urlString];
+    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url
                                                   cachePolicy:NSURLRequestReloadIgnoringCacheData
-                                              timeoutInterval:15.];
+                                              timeoutInterval:30.];
+    
     WAConnectionService *service = [[WAConnectionService alloc] initWith:request
                                                           withCompletion:completion
                                                           withParserType:parser];
@@ -135,8 +163,8 @@
 -(void) findWeatherfor7DaysWithLatitude:(double) latitude andLongitude: (double) longitude withCompletion:(ServiceCompletionBlock)completion
 {
     //lat=35&lon=139&cnt=7&mode=json
- 
-   
+    
+    
     //NSString *urlString = [NSString stringWithFormat:@"%@%f&lon=%f%@", URL_7Days, latitude, longitude, URL_JSON];
     NSString *urlString = [NSString stringWithFormat:URL_7Days, latitude, longitude];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -149,26 +177,32 @@
     [service start];
 }
 
-
-
-- (NSFetchedResultsController *)fetchResultsController
+-(void) deleteCityByName: (NSString *) cityName andID: (NSNumber *) cityID
 {
-    if (_fetchResultsController)
-        return _fetchResultsController;
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:[CityInfo entityName]];
-    NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"dateAdded" ascending:NO];
-    fetchRequest.sortDescriptors = @[ sorter ];
-    
-    NSManagedObjectContext *context = [WADataManager sharedInstance].managedObjectContext;
-    
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                 managedObjectContext:context
-                                                                                   sectionNameKeyPath:nil
-                                                                                            cacheName:nil];
-    [controller performFetch:nil];
-    return controller;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"cityName == %@ && cityID != %d", cityName, cityID.integerValue];
+    fetchRequest.predicate = predicate;
+    NSArray *cities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for(CityInfo *city in cities){
+        [self.managedObjectContext deleteObject:city];
+    }
+    [self saveContext];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if (object == self.requestQueue && [keyPath isEqualToString:@"operations"]) {
+        if ([self.requestQueue.operations count] == 0) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didFinishOperations" object:self];
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object
+                               change:change context:context];
+    }
+}
 
 @end

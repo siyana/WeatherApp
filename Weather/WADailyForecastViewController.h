@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "CityInfo.h"
 
 @interface WADailyForecastViewController : UITableViewController
+
+@property (strong, nonatomic) CityInfo *detailItem;
 
 @end

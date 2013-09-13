@@ -14,14 +14,16 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) NSFetchedResultsController *fetchResultsController;
+
+@property (strong) NSOperationQueue *requestQueue;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 + (WADataManager *)sharedInstance;
 
--(void) findCityByName: (NSString *) cityName andParser: (WAParserType) parser withCompletion:(ServiceCompletionBlock)completion;
+-(void) findCityBy: (NSString *) citySearchData withURL:(WAURLs) initialURL andParser: (WAParserType) parser withCompletion:(ServiceCompletionBlock)completion;
 -(void) findWeatherfor7DaysWithLatitude:(double) latitude andLongitude: (double) longitude withCompletion:(ServiceCompletionBlock)completion;
+-(void) deleteCityByName: (NSString *) cityName andID: (NSNumber *) cityID;
 
-- (NSFetchedResultsController *)fetchResultsController;
+//- (NSFetchedResultsController *)fetchResultsController;
 @end

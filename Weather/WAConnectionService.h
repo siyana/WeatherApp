@@ -11,6 +11,7 @@
 
 @interface WAConnectionService : NSObject
 
+
 - (id)initWith:(NSURLRequest *)request
 withCompletion:(ServiceCompletionBlock)completion
 withParserType:(WAParserType)parserType;

@@ -2,7 +2,7 @@
 //  WeatherInfo.h
 //  Weather
 //
-//  Created by Siyana Slavova on 9/9/13.
+//  Created by Siyana Slavova on 9/13/13.
 //  Copyright (c) 2013 Siyana Slavova. All rights reserved.
 //
 
@@ -25,5 +25,6 @@
 @property (nonatomic, retain) NSString * weatherIcon;
 @property (nonatomic, retain) NSNumber * windSpeed;
 @property (nonatomic, retain) CityInfo *city;
+@property (nonatomic, retain) CityInfo *cityDailyForecast;
 
 @end

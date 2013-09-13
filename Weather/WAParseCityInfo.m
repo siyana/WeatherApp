@@ -14,7 +14,7 @@
 
 - (void)parseDict:(NSDictionary *)jsonDict
 {
-   // NSLog(@"json: %@", jsonDict);
+    //NSLog(@"city json: %@", jsonDict);
     
     NSManagedObjectContext *context = [WADataManager sharedInstance].managedObjectContext;
     
@@ -39,6 +39,7 @@
     if (cities.count == 0) {
          cityInfo = [NSEntityDescription insertNewObjectForEntityForName:[CityInfo entityName]
                                                   inManagedObjectContext:context];
+            cityInfo.dateAdded = [NSDate date];
     }
     else {
         cityInfo = [cities lastObject];
@@ -47,8 +48,7 @@
     cityInfo.cityName = cityName;
     cityInfo.cityID = cityId;
     cityInfo.longitude = [[jsonDict objectForKey:@"coord"] objectForKey:@"lon"];
-    cityInfo.latitude = [[jsonDict objectForKey:@"coord"] objectForKey:@"lat"];
-    cityInfo.dateAdded = [NSDate date];
+    cityInfo.latitude = [[jsonDict objectForKey:@"coord"] objectForKey:@"lat"];    
     cityInfo.country = [[jsonDict objectForKey:@"sys"] objectForKey:@"country"];
     
     

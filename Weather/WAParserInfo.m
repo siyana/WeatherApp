@@ -21,6 +21,7 @@
 }
 
 - (void)start {
+    NSLog(@"parser did start");
     [self parseDict:self.jsonDict];
 }
 

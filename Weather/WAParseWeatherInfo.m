@@ -75,23 +75,32 @@
 
 - (void)parseWeatherInfo:(NSDictionary *)weatherDict forCity:(CityInfo *)city
 {
-     NSManagedObjectContext *context = [WADataManager sharedInstance].managedObjectContext; 
-    WeatherInfo *weatherInfo = [NSEntityDescription insertNewObjectForEntityForName:[WeatherInfo entityName]
-                                                             inManagedObjectContext:context];
+    NSManagedObjectContext *context = [WADataManager sharedInstance].managedObjectContext;
+    
+    
+    WeatherInfo *weatherInfo;
+    
+    if(!city.dailyForecast){
+        weatherInfo = [NSEntityDescription insertNewObjectForEntityForName:[WeatherInfo entityName]
+                                        inManagedObjectContext:context];
+    }else{
+        weatherInfo =  city.dailyForecast;
+    }
+    
+
     weatherInfo.date = [NSDate dateWithTimeIntervalSince1970: [[weatherDict objectForKey:@"dt"] doubleValue]];
-    weatherInfo.windSpeed = [weatherDict objectForKey:@"speed"];
-    
-    
+    weatherInfo.windSpeed = [weatherDict objectForKey:@"speed"];    
     weatherInfo.weatherIcon = [[[weatherDict objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"icon"];//?
     weatherInfo.weatherDescription = [[[weatherDict objectForKey:@"weather"] objectAtIndex:0] objectForKey:@"description"];
     weatherInfo.temperature = [[weatherDict objectForKey:@"main"] objectForKey:@"temp"];
-    //sunset sunrise
-   // weatherInfo.sunriseTime = [weatherInfo o]
+    double sunriseTime = [[[weatherDict objectForKey:@"sys"] objectForKey:@"sunrise"] doubleValue];
+    double sunsetTime = [[[weatherDict objectForKey:@"sys"] objectForKey:@"sunset"] doubleValue];
+    weatherInfo.sunriseTime = [NSDate dateWithTimeIntervalSince1970:sunriseTime ];
+    weatherInfo.sunsetTime = [NSDate dateWithTimeIntervalSince1970:sunsetTime ];
     weatherInfo.minTemp = [[weatherDict objectForKey:@"main"] objectForKey:@"temp_min"];
-    weatherInfo.maxTemp = [[weatherDict objectForKey:@"main"] objectForKey:@"temp_max"];
-    
+    weatherInfo.maxTemp = [[weatherDict objectForKey:@"main"] objectForKey:@"temp_max"];    
     weatherInfo.humidity  = [[weatherDict objectForKey:@"main"] objectForKey:@"humidity"];
-    weatherInfo.city = city;
+    weatherInfo.cityDailyForecast = city;
 }
 
 @end
